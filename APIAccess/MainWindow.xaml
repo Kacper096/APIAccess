@@ -1,0 +1,69 @@
+﻿<Window x:Class="APIAccess.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:APIAccess"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:model="clr-namespace:APIAccess.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF1257EC"
+        ResizeMode="NoResize" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Minimize_Click">
+                    <materialDesign:PackIcon Kind="ArrowCollapseDown"/>
+                </Button>
+                <Button Click="Close_Click">
+                    <materialDesign:PackIcon Kind="Power" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel/>
+            <Image Source="/Images/256.ico"/>
+        </Grid>
+        <Border Grid.ColumnSpan="2" Grid.Row="2" BorderBrush="Transparent" BorderThickness="25 40" >
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Region" Foreground="AliceBlue" Text="{Binding Mode=OneWayToSource, Path=Region, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Content="RU"/>
+                    <ComboBoxItem Content="KR"/>
+                    <ComboBoxItem Content="BR1"/>
+                    <ComboBoxItem Content="OC1"/>
+                    <ComboBoxItem Content="JP1"/>
+                    <ComboBoxItem Content="NA1"/>
+                    <ComboBoxItem Content="EUN1"/>
+                    <ComboBoxItem Content="EUW1"/>
+                    <ComboBoxItem Content="TR1"/>
+                    <ComboBoxItem Content="LA1"/>
+                    <ComboBoxItem Content="LA2"/>
+                </ComboBox>
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Summoner" Foreground="AliceBlue" Text="{Binding Mode=OneWayToSource, Path=Summoner, UpdateSourceTrigger=PropertyChanged}"/>
+                <Border BorderBrush="Transparent" BorderThickness="10 60 10 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border BorderBrush="Transparent" BorderThickness="5">
+                            <Button Content="SIGN UP" Command="{Binding SignUp}" CommandTarget="{Binding ElementName=cos}" />
+                        </Border>
+                        <Border BorderBrush="Transparent" BorderThickness="5">
+                            <Button Content="CANCEL"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="3">
+            <Label  Name="cos" Grid.ColumnSpan="2" Content="{Binding Path=IsOk, UpdateSourceTrigger=Explicit}" />
+        </StackPanel>
+    </Grid>
+</Window>
