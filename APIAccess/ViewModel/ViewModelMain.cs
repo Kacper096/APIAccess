@@ -1,6 +1,9 @@
 ﻿using APIAccess.Api;
+using APIAccess.Model.Exception;
 using Helpers;
 using System;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -35,6 +38,10 @@ namespace APIAccess.ViewModel
                 SetProperty<string>(ref summoner, value);
             }
         }
+
+        /// <summary>
+        /// This property helps to manipulate about validation.
+        /// </summary>
         private bool IsOk
         {
             get => ok;
@@ -43,6 +50,10 @@ namespace APIAccess.ViewModel
                 SetProperty<bool>(ref ok, value);
             }
         }
+
+        /// <summary>
+        /// Checks the validation. If some gone wrong Welcome sends Data to View.
+        /// </summary>
         public string Welcome
         {
             get => _welcome;
@@ -66,6 +77,10 @@ namespace APIAccess.ViewModel
 
         #region Validation Colors Properties
         
+        /// <summary>
+        /// Sets the color in the View. If some gone wrong label gets the red background until label gets the 
+        /// green foreground label.
+        /// </summary>
         public Tuple<string,string> Validation
         {
             get => _validation;
@@ -85,7 +100,11 @@ namespace APIAccess.ViewModel
         #region Constructors
         public ViewModelMain()
         {
-            SignUp = new RelayCommand(s => { IsOk = this.SearchSummoner().Item2; Welcome = this.SearchSummoner().Item1;});
+            SignUp = new RelayCommand(s =>
+            {  IsOk = this.SearchSummoner(out string _tempname);
+                Welcome = _tempname;
+            });
+
             Cancel = new RelayCommand(c => this.ResetSummoner());
         }
         #endregion
@@ -95,36 +114,47 @@ namespace APIAccess.ViewModel
         /// Searchs Summoner By Name
         /// </summary>
         /// <returns></returns>
-        private Tuple<String, bool> SearchSummoner()
+        private  bool SearchSummoner(out string name)
         {
+            
             try
             {
-                var summ = new SummonerV4(region);
-                SummonerDTO dtoo = summ.GetSummonerByName(summoner);
-
-                return CheckSummoner(dtoo.Name);
+               
+               var summ = new SummonerV4(region);
+               SummonerDTO dtoo =  summ.GetSummonerByName(summoner);
+               name = dtoo.Name;
+               
+               return true;
+               
             }
-            catch(Exception)
+            catch(HttpException e)
             {
-                return CheckSummoner();
+
+                name = e.Message;
+                return false;
+            }
+            catch(RegionException e)
+            {
+                name = e.Message;
+                return false;
+
+            }
+            catch(SummonerException e)
+            {
+
+                name = e.Message;
+                return false;
+            }
+            catch(Exception e)
+            {
+
+                name = e.Message;
+                return false;
                 
             }
             
 
         }
-
-        /// <summary>
-        /// Checks the name of summoer
-        /// </summary>
-        /// <param name="summoner">Summoner Name</param>
-        /// <returns></returns>
-        private Tuple<string,bool> CheckSummoner(string summoner = null)
-        {
-            Tuple<string, bool> result = string.IsNullOrEmpty(summoner) ? new Tuple<string, bool>("Summoner hasn't been found.", false) : new Tuple<string, bool>(summoner, true);
-
-            return result;
-        }
-
         /// <summary>
         /// Resets summoner name and region in the textbox.
         /// </summary>

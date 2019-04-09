@@ -20,6 +20,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!-- Minimize Button and Close App-->
         <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal">
                 <Button Click="Minimize_Click">
@@ -30,10 +31,12 @@
                 </Button>
             </StackPanel>
         </Grid>
+        <!-- Logo-->
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel/>
-            <Image Source="/Images/256.ico"/>
+            <Image Source="/Images/logo.png"/>
         </Grid>
+        <!-- Inputs, Sign and Cancel Buttons, Validation Label-->
         <login:SignForm Grid.ColumnSpan="2" Grid.Row="2"/>
     </Grid>
 </Window>

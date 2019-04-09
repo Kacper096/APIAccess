@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -23,8 +22,16 @@ namespace APIAccess.Api
             Task<HttpResponseMessage> result;
             try
             {
-                result = client.GetAsync(URL); 
-                result.Wait();
+                result =  client.GetAsync(URL);
+                result.Wait();                  //Block the application
+            }
+            catch(HttpRequestException e)
+            {
+                throw new HttpRequestException(e.Message);
+            }
+            catch(ArgumentNullException e)
+            {
+                throw new ArgumentNullException(e.Message);
             }
             catch(Exception e)
             {
@@ -44,10 +51,17 @@ namespace APIAccess.Api
             return str;
         }
 
+        /// <summary>
+        /// Gets the key from the Configuration file.
+        /// </summary>
+        /// <returns></returns>
         public string GetKey()
         {
             string str = ConfigurationManager.AppSettings["Key"].ToString();
             return str;
         }
+
+       
+        
     }
 }

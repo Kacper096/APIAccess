@@ -13,8 +13,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <!-- Region and Summoner Name Inputs-->
         <Border  BorderBrush="Transparent" BorderThickness="25 40" >
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                <!-- Region Input-->
                 <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Region" Foreground="AliceBlue" Text="{Binding Mode=TwoWay, Path=Region, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem Content="RU"/>
                     <ComboBoxItem Content="KR"/>
@@ -28,7 +30,13 @@
                     <ComboBoxItem Content="LA1"/>
                     <ComboBoxItem Content="LA2"/>
                 </ComboBox>
-                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Summoner" Foreground="AliceBlue" Text="{Binding Mode=TwoWay, Path=Summoner}" />
+                <!-- Summoner Name Input-->
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Summoner" Foreground="AliceBlue" Text="{Binding Mode=TwoWay, Path=Summoner,UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SignUp}" Key="Return"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <!-- Sign Button AND Cancel-->
                 <Border BorderBrush="Transparent" BorderThickness="10 60 10 10">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Border BorderBrush="Transparent" BorderThickness="5">
@@ -41,9 +49,12 @@
                 </Border>
             </StackPanel>
         </Border>
+        <!-- Validation Label-->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <Label   Content="{Binding Path=Welcome, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Path=Validation.Item1}" Background="{Binding Path=Validation.Item2}"
-                     FontSize="14"/>
+            <Label  Foreground="{Binding Path=Validation.Item1}" Background="{Binding Path=Validation.Item2}"
+                     FontSize="14">
+                <TextBlock Text="{Binding Path=Welcome, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow"/>
+            </Label>
         </StackPanel>    
     </Grid>
 </UserControl>
