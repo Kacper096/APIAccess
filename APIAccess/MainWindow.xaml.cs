@@ -26,6 +26,7 @@ namespace APIAccess
             InitializeComponent();
             ViewModelMain viewModel = new ViewModelMain();
             this.DataContext = viewModel;
+            MouseDown += Window_MouseDown;
         }
 
         
@@ -43,5 +44,15 @@ namespace APIAccess
             }
             
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
+
+        
     }
 }

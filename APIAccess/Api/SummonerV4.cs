@@ -19,8 +19,10 @@ namespace APIAccess.Api
         {
             string path = string.Format(@"summoner/v4/summoners/by-name/{0}", SummonerName);
 
-            
-            var response = GET(GetURI(path));
+
+            try
+            {
+                var response = GET(GetURI(path));
             string content = response.Content.ReadAsStringAsync().Result;
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -28,6 +30,11 @@ namespace APIAccess.Api
                 return JsonConvert.DeserializeObject<SummonerDTO>(content);
             }
             else return null;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
            
         }
     }

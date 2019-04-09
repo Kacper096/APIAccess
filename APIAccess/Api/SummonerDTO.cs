@@ -15,5 +15,6 @@ namespace APIAccess.Api
         public long RevisionDate { get; set; }
         public string Id { get; set; }
         public string AccountId { get; set; }
+
     }
 }

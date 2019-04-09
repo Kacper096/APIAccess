@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.IO;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace APIAccess.Api
 {
@@ -19,14 +20,15 @@ namespace APIAccess.Api
         protected HttpResponseMessage GET(string URL)
         {
             HttpClient client = new HttpClient(new HttpClientHandler() { UseProxy = false });
-            var result = client.GetAsync(URL);
+            Task<HttpResponseMessage> result;
             try
             {
+                result = client.GetAsync(URL); 
                 result.Wait();
             }
             catch(Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.HelpLink);
             }
 
             return result.Result;
