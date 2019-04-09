@@ -24,7 +24,7 @@ namespace APIAccess
         public MainWindow()
         {
             InitializeComponent();
-            ViewModelMain viewModel = new ViewModelMain();
+            SummonerViewModel viewModel = new SummonerViewModel();
             this.DataContext = viewModel;
             MouseDown += Window_MouseDown;
         }

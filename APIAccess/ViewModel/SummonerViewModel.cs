@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace APIAccess.ViewModel
 {
-    public class ViewModelMain : ObservableObject
+    public class SummonerViewModel : ObservableObject
     {
         #region Private Fields
         string region = string.Empty;
@@ -98,7 +98,7 @@ namespace APIAccess.ViewModel
         #endregion
 
         #region Constructors
-        public ViewModelMain()
+        public SummonerViewModel()
         {
             SignUp = new RelayCommand(s =>
             {  IsOk = this.SearchSummoner(out string _tempname);
