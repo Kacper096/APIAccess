@@ -1,4 +1,5 @@
-﻿using APIAccess.Model.Exception;
+﻿using APIAccess.Api.Model;
+using APIAccess.Model.Exception;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace APIAccess.Api
 {
@@ -28,7 +30,7 @@ namespace APIAccess.Api
                 var response = GET(GetURI(path));
 
                 //Checks the response exception
-                IsHttp(response);
+                HttpHelper.IsHttp(response);
 
                 string content = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<SummonerDTO>(content);
@@ -70,26 +72,7 @@ namespace APIAccess.Api
             return result;
         }
 
-        /// <summary>
-        /// Throws exception when Http push exception. I wrote this method, because HttpClient don't pushes exceptions.
-        /// </summary>
-        /// <param name="message"></param>
-        private void IsHttp(HttpResponseMessage message)
-        {
-            switch(message.StatusCode)
-            {
-                case HttpStatusCode.NotFound:
-                    throw new SummonerException("Summoner name hasn't been found. Checks your name.");
-                case HttpStatusCode.Forbidden:
-                    throw new HttpException("You don't have access.");
-                case HttpStatusCode.GatewayTimeout:
-                    throw new HttpException("Timeout. Try connect again.");
-                case HttpStatusCode.BadGateway:
-                    throw new HttpException("Refresh the connection.");
-                case HttpStatusCode.OK:
-                    break;
-            }
-        }
+        
         #endregion
     }
 }
