@@ -8,8 +8,8 @@
         xmlns:login ="clr-namespace:APIAccess.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF1257EC"
-        ResizeMode="NoResize">
-    <Grid>
+        ResizeMode="NoResize" Icon="/Images/logo.png">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

@@ -1,4 +1,5 @@
-﻿using APIAccess.ViewModel;
+﻿using APIAccess.View;
+using APIAccess.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Unity;
 
 namespace APIAccess
 {
@@ -21,12 +23,12 @@ namespace APIAccess
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            SummonerViewModel viewModel = new SummonerViewModel();
-            this.DataContext = viewModel;
             MouseDown += Window_MouseDown;
+            
         }
 
         /// <summary>
