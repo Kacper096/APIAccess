@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="APIAccess.View.UserControls.Profile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:APIAccess.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.DataContext>
+        <vm:ProfileViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <!-- Schema-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Data -->
+        <!--First ROW-->
+        <Label Content="{Binding Path=Profile.Icon}" Grid.Column="0"/>
+        <Label Content="{Binding Path=Profile.SummonerName}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                   FontSize="20" FontWeight="DemiBold"/>
+        <Image Source="{Binding Path=Profile.Emblem}" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="3" Stretch="Uniform" Grid.RowSpan="2"/>
+        <!--Second ROW-->
+        <Label Content="WINS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Path=Profile.Wins}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Label Content="LOSSES" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"/>
+        <Label Content="{Binding Path=Profile.Losses}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="2"/>
+        <Label Content="{Binding Path=Profile.Tier}" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Top" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"
+                   FontSize="15" FontWeight="Bold" FontStyle="Italic" />
+        <!--Third ROW-->
+        <Label Content="Rank" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4"/>
+        <Label Content="{Binding Path=Profile.Rank}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="4"/>
+    </Grid>
+</UserControl>
