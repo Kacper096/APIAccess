@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+
 namespace APIAccess.Api
 {
     public class Api
@@ -35,7 +36,7 @@ namespace APIAccess.Api
             }
             catch(Exception e)
             {
-                throw new Exception(e.HelpLink);
+                throw new Exception(e.Message);
             }
 
             return result.Result;

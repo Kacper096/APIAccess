@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              DispatcherUnhandledException="Application_DispatcherUnhandledException"
              xmlns:local="clr-namespace:APIAccess"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,6 +14,5 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-       
     </Application.Resources>
 </Application>
