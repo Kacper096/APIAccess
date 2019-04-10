@@ -2,10 +2,10 @@
 using APIAccess.Model.Exception;
 using Helpers;
 using System;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-
+using APIAccess.Api.Model;
+using APIAccess.View;
+using APIAccess.Api.Model.Search;
 
 namespace APIAccess.ViewModel
 {
@@ -48,6 +48,11 @@ namespace APIAccess.ViewModel
             set
             {
                 SetProperty<bool>(ref ok, value);
+                if(ok)
+                {
+                    var lig = new League();
+                    lig.Show();
+                }
             }
         }
 
@@ -101,8 +106,9 @@ namespace APIAccess.ViewModel
         public SummonerViewModel()
         {
             SignUp = new RelayCommand(s =>
-            {  IsOk = this.SearchSummoner(out string _tempname);
+            {   IsOk = this.SearchSummoner(out string _tempname);
                 Welcome = _tempname;
+                
             });
 
             Cancel = new RelayCommand(c => this.ResetSummoner());
@@ -123,7 +129,7 @@ namespace APIAccess.ViewModel
                var summ = new SummonerV4(region);
                SummonerDTO dtoo =  summ.GetSummonerByName(summoner);
                name = dtoo.Name;
-               
+                ArchiveSummoner(dtoo);
                return true;
                
             }
@@ -163,7 +169,18 @@ namespace APIAccess.ViewModel
             this.Summoner = string.Empty;
             this.Region = string.Empty;
         }
+        /// <summary>
+        /// Archive names to the static class. So we can delivery data to profile.
+        /// </summary>
+        /// <param name="summoner"></param>
+        private void ArchiveSummoner(SummonerDTO summoner)
+        {
+            Access.Clear();
+            Access.Summoner = summoner;
+            Access.Region = region;
+        }
         #endregion
 
+        
     }
 }
