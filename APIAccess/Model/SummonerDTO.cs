@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIAccess.Api
+namespace APIAccess.Api.Model
 {
     public class SummonerDTO
     {
