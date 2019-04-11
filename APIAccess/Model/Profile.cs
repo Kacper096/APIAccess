@@ -21,6 +21,7 @@ namespace APIAccess.Model
             Emblem = string.Format("/Images/Emblems/Emblem_{0}.png", Tier);
             Wins = position.Wins;
             Losses = position.Losses;
+            LeagueName = position.LeagueName;
         }
 
         #region Data Properties
@@ -33,6 +34,7 @@ namespace APIAccess.Model
         public string Emblem { get; }
         public int Wins { get; }
         public int Losses { get; }
+        public string LeagueName { get; }
         #endregion
 
         /// <summary>

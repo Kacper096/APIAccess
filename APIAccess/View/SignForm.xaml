@@ -36,7 +36,7 @@
                 <!-- Summoner Name Input-->
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Summoner" Foreground="AliceBlue" Text="{Binding Mode=TwoWay, Path=Summoner,UpdateSourceTrigger=PropertyChanged}" >
                     <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding SignUp}" Key="Return"/>
+                        <KeyBinding Command="{Binding Search}" Key="Return"/>
                     </TextBox.InputBindings>
                 </TextBox>
                 <!-- Search Button AND Cancel-->

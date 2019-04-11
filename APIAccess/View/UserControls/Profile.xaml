@@ -60,6 +60,10 @@
                    FontSize="15" FontStyle="Italic"/>
         <Label Content="{Binding Path=Profile.Rank}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3"
                    FontSize="14.3" FontStyle="Italic" />
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2"
+                   FontSize="14.3" FontStyle="Italic">
+            <TextBlock Text="{Binding Path=Profile.LeagueName, Mode=OneWay}" TextWrapping="WrapWithOverflow" IsEnabled="False"/>
+        </Label>
         <!--Third ROW-->
         <Label Content="LEVEL" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"
                FontStyle="Italic" Foreground="#9E9E9E" FontSize="17"/>

@@ -13,5 +13,6 @@ namespace APIAccess.Model
         public int Losses { get; set; }
         public string Rank { get; set; }
         public string Tier { get; set; }
+        public string LeagueName { get; set; }
     }
 }
