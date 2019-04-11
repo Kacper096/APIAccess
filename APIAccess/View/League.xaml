@@ -4,27 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:profile="clr-namespace:APIAccess.View.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="League" Height="600" Width="450" Background="#FFC400">
- 
+        Title="League" Height="600" Width="450" Background="#FFC400"
+        ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Icon="/Images/logo.png">
     <Grid>
         <!--Schema-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="7.5*"/>
             <RowDefinition Height="7.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--Minimize, Close Buttons-->
+        <Grid Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" >
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Minimize_Click" Background="#FF1257EC">
+                    <materialDesign:PackIcon Kind="ArrowCollapseDown" Foreground="#FFFFFF"/>
+                </Button>
+                <Button Click="Close_Click" Background="#FF1257EC" Foreground="#FFFFFF">
+                    <materialDesign:PackIcon Kind="Power" />
+                </Button>
+            </StackPanel>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="25" ShadowDepth="2"/>
+            </Grid.Effect>
+        </Grid>
         <!--Data-->
-        <Border BorderBrush="Transparent" BorderThickness="3" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                CornerRadius="30" Background="#42A5F5">
-            <profile:Profile />
-        </Border>
+        <profile:Profile Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" />
     </Grid>
 </Window>

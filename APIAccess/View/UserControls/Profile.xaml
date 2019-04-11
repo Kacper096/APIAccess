@@ -27,22 +27,49 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- Data -->
         <!--First ROW-->
-        <Label Content="{Binding Path=Profile.Icon}" Grid.Column="0"/>
-        <Label Content="{Binding Path=Profile.SummonerName}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
-                   FontSize="20" FontWeight="DemiBold"/>
-        <Image Source="{Binding Path=Profile.Emblem}" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="3" Stretch="Uniform" Grid.RowSpan="2"/>
+        <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="100" Width="100" Height="100">
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding Path=Profile.Icon}" Stretch="Uniform"/>
+            </Border.Background>
+        </Border>
+        <Label Content="{Binding Path=Profile.SummonerName}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+                   FontSize="20" FontWeight="Bold"/>
+        <Image Source="{Binding Path=Profile.Emblem}" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3" Stretch="Uniform" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!-- Shadow Effect-->
+            <Image.Effect>
+                <DropShadowEffect BlurRadius="40" ShadowDepth="1"/>
+            </Image.Effect>
+        </Image>
         <!--Second ROW-->
-        <Label Content="WINS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <Label Content="{Binding Path=Profile.Wins}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <Label Content="LOSSES" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"/>
-        <Label Content="{Binding Path=Profile.Losses}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="2"/>
-        <Label Content="{Binding Path=Profile.Tier}" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Top" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"
-                   FontSize="15" FontWeight="Bold" FontStyle="Italic" />
+        <Label Content="WINS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" 
+               FontSize="15" Foreground="#2EE532"/>
+        <Label Content="{Binding Path=Profile.Wins}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
+               FontSize="14"/>
+        <Label Content="LOSSES" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" 
+               FontSize="15" Foreground="#E53935"/>
+        <Label Content="{Binding Path=Profile.Losses}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2"
+               FontSize="14"/>
+        <Label Content="{Binding Path=Profile.Tier}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3"
+                   FontSize="15.8" FontWeight="SemiBold" FontStyle="Italic" />
+        <Label Content="{Binding Path=Profile.QueueType}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3"
+                   FontSize="15" FontStyle="Italic"/>
+        <Label Content="{Binding Path=Profile.Rank}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3"
+                   FontSize="14.3" FontStyle="Italic" />
         <!--Third ROW-->
-        <Label Content="Rank" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4"/>
-        <Label Content="{Binding Path=Profile.Rank}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="4"/>
+        <Label Content="LEVEL" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"
+               FontStyle="Italic" Foreground="#9E9E9E" FontSize="17"/>
+        <Label Content="{Binding Path=Profile.Level}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2"
+               FontSize="25"/>
+        <!--Background Color to specify cell-->
+        <Border Background="White" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="4" CornerRadius="30" Panel.ZIndex="-1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="3"/>
+            </Border.Effect>
+        </Border>
     </Grid>
 </UserControl>
