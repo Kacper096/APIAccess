@@ -39,11 +39,11 @@
                         <KeyBinding Command="{Binding SignUp}" Key="Return"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <!-- Sign Button AND Cancel-->
+                <!-- Search Button AND Cancel-->
                 <Border BorderBrush="Transparent" BorderThickness="10 60 10 10">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Border BorderBrush="Transparent" BorderThickness="5">
-                            <Button Content="SIGN UP" Command="{Binding SignUp}"/>
+                            <Button Content="SEARCH" Command="{Binding Search}"/>
                         </Border>
                         <Border BorderBrush="Transparent" BorderThickness="5">
                             <Button Content="CANCEL" Command="{Binding Cancel}"/>

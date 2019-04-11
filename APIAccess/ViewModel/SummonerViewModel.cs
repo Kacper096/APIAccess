@@ -6,6 +6,7 @@ using System.Windows.Input;
 using APIAccess.Api.Model;
 using APIAccess.View;
 using APIAccess.Api.Model.Search;
+using System.Threading.Tasks;
 
 namespace APIAccess.ViewModel
 {
@@ -98,14 +99,14 @@ namespace APIAccess.ViewModel
         #endregion
 
         #region Commands
-        public ICommand SignUp { get; set; }
+        public ICommand Search { get; set; }
         public ICommand Cancel { get; set; }
         #endregion
 
         #region Constructors
         public SummonerViewModel()
         {
-            SignUp = new RelayCommand(s =>
+            Search = new RelayCommand(s =>
             {   IsOk = this.SearchSummoner(out string _tempname);
                 Welcome = _tempname;
                 
@@ -120,9 +121,8 @@ namespace APIAccess.ViewModel
         /// Searchs Summoner By Name
         /// </summary>
         /// <returns></returns>
-        private  bool SearchSummoner(out string name)
+        private bool SearchSummoner( string name)
         {
-            
             try
             {
                
