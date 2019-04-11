@@ -34,7 +34,12 @@
         <!-- Logo-->
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel/>
-            <Image Source="/Images/logo.png"/>
+            <Image Source="/Images/logo.png">
+                <!--Shadow Effect-->
+                <Image.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="5"/>
+                </Image.Effect>
+            </Image>
         </Grid>
         <!-- Inputs, Sign and Cancel Buttons, Validation Label-->
         <login:SignForm Grid.ColumnSpan="2" Grid.Row="2"/>
