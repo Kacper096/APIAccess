@@ -51,8 +51,7 @@ namespace APIAccess.ViewModel
                 SetProperty<bool>(ref ok, value);
                 if(ok)
                 {
-                    var lig = new League();
-                    lig.Show();
+                    AppViewModel.ShowWin(Windows.League);
                 }
             }
         }
@@ -121,7 +120,7 @@ namespace APIAccess.ViewModel
         /// Searchs Summoner By Name
         /// </summary>
         /// <returns></returns>
-        private bool SearchSummoner( string name)
+        private bool SearchSummoner(out string name)
         {
             try
             {
