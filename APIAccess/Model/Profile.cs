@@ -11,11 +11,13 @@ namespace APIAccess.Model
         public Profile()
         {
             var position = Profile.GetLeaguePosition(Access.Summoner);
+            var queType = Queue(position.QueueType);
             SummonerName = Access.Summoner.Name;
-            Icon = Access.Summoner.PUUID;
+            Icon = string.Format(@"http://opgg-static.akamaized.net/images/profile_icons/profileIcon{0}.jpg",Access.Summoner.ProfileIconId);
             Level = Access.Summoner.SummonerLevel;
             Tier = position.Tier;
-            Rank = position.Rank;
+            QueueType = queType;
+            Rank = IsSecondEmpty(string.Format("Rank {0}",position.Rank));
             Emblem = string.Format("/Images/Emblems/Emblem_{0}.png", Tier);
             Wins = position.Wins;
             Losses = position.Losses;
@@ -26,6 +28,7 @@ namespace APIAccess.Model
         public string Icon { get; }
         public long Level { get; }
         public string Tier { get;  }
+        public string QueueType { get; }
         public string Rank { get; }
         public string Emblem { get; }
         public int Wins { get; }
@@ -44,6 +47,39 @@ namespace APIAccess.Model
             var position = league.GetPosition(summoner.Id).Where(p => p.QueueType.Contains("RANKED_SOLO_5x5")).FirstOrDefault();
 
             return position ?? new LeaguePositionDTO();
+        }
+
+        /// <summary>
+        /// Gets queue type and it renames to humanable string.
+        /// </summary>
+        private static string Queue(string type)
+        {
+            if (string.IsNullOrEmpty(type))
+                return string.Empty;
+            if (type.Contains("RANKED"))
+                if (type.Contains("SOLO"))
+                    return type = "Solo";
+                else return type = "Team";
+
+            return string.Empty;
+        }
+
+        // It's necessary to Rank property. If position.Rank is empty our Rank should be empty.
+        /// <summary>
+        /// It checks whether second word have any chars. If it don't have method returns string.Empty;
+        /// </summary>
+        /// <param name="word">Input word.</param>
+        /// <returns></returns>
+        private static string IsSecondEmpty(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return string.Empty;
+            else
+            {
+                string[] tab = word.Split(' ');
+
+                return string.IsNullOrEmpty(tab[1]) ? string.Empty : word;
+            }
         }
     }
 }
